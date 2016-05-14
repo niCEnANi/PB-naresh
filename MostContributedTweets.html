@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Most Contributed Tweets</title>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-3d.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+<script type="text/javascript" src="mostContributed.json"></script>
+</head>
+<body>
+<div id="container" style="width:50%; height:400px;"></div>
+<script>
+    
+    var mydata=JSON.parse(mostContributed);
+    
+    var category = [];
+    var data1 = [];
+    for(var i=0;i<mydata.length;i++)
+    {
+        
+                     category.push(mydata[i].text);
+                     data1.push(mydata[i].count);
+                     
+        
+    }
+    
+</script>
+<script type="text/javascript">
+ 
+$(function () {
+    $('#container').highcharts({
+        chart: {
+            type: 'column',
+            margin: 75,
+            options3d: {
+                enabled: true,
+                alpha: 10,
+                beta: 25,
+                depth: 70
+            }
+        },
+        title: {
+            text: 'Most Contributed Tweets'
+        },
+        subtitle: {
+            text: ''
+        },
+        plotOptions: {
+            column: {
+                depth: 25
+            }
+        },
+        xAxis: {
+            categories: category
+        },
+        yAxis: {
+            title: {
+                text: null
+            }
+        },
+        series: [{
+            name: 'Count',
+            data: data1
+        }]
+    });
+});
+ 
+</script>
+<h3 id="one" style="color:LightCyan">Top1:Tough luck boys. It was a good match and well fought! Best wishes to West Indies and England for the finals. #IndvsWI #WT20</h5>
+<h3 id="two" style="color:LightCyan">Top2:Woooow @imVkohli ...special it was... Great win, fighting all the way! #IndvsAus</h3>
+<h3 id="three" style="color:LightCyan">Top3:Virat Kohli is some player!In the high pressure situations shows what type of player you are and he does it time and time again! #IndvsAus</h3>
+<h3 id="four" style="color:LightCyan">Top4:Heartiest Congratulations to Team India on winning the match against Australia!!! Well-done!\n#MessagesOfMSG</h3>
+<h3 id="five" style="color:LightCyan">Top5:Win Or Loss. We Still Love Team India. \nRT If You Too. \n\n#IndvsWI #DilSay #WIvIND https://t.co/E8iDhBg7YK</h3>
+</body>
+</html>

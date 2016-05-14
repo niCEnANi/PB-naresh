@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Location Spread</title>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-3d.js"></script>
+<script type="text/javascript" src="locationspread.json"></script>
+</head>
+<body>
+<div id="container" style="width:100%; height:400px;"></div>
+<script>
+    
+    var mydata=JSON.parse(locationspread);
+    var requiredData=[];
+    
+    for(var i=0;i<mydata.length;i++)
+    {
+        var temp = [];
+                     temp.push(mydata[i].country);
+                     temp.push(mydata[i].count);
+                     requiredData.push(temp); 
+                     
+        
+    }
+    
+</script>
+<script type="text/javascript">
+ 
+ $(function () {
+    $('#container').highcharts({
+        chart: {
+            type: 'pie',
+            options3d: {
+                enabled: true,
+                alpha: 45
+            }
+        },
+        title: {
+            text: 'Location Spread'
+        },
+        subtitle: {
+            text: ''
+        },
+        plotOptions: {
+            pie: {
+                innerSize: 100,
+                depth: 45,
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                }
+            }
+        },
+        series: [{
+            name: 'Share',
+            data: requiredData
+        }]
+    });
+});
+ 
+</script>
+</body>
+</html>
